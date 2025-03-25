@@ -1,0 +1,20 @@
+{
+  "cleanup_policies": {
+    "keep-latest-only": {
+      "action": "DELETE",
+      "condition": {
+        "olderThan": "0d",
+        "tagState": "tagged",
+        "newerThan": "0d"
+      },
+      "mostRecentVersions": 1
+    },
+    "delete-untagged": {
+      "action": "DELETE",
+      "condition": {
+        "olderThan": "1d",
+        "tagState": "untagged"
+      }
+    }
+  }
+} 
