@@ -1,0 +1,191 @@
+Name,Problem,Solution
+Kelly Smith,"Consider the following equation: $y^2 y'' = 1+x$. In the limit $x\rightarrow +\infty$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","For large $x$, we have $y^2y'' \approx x$.
+
+1) Check for ""algebraic"" asymptotic behaviour. Let $y(x) \sim x^{\alpha}, x \rightarrow \infty$. Then:
+
+$y' \sim \alpha x^{\alpha-1}, y'' \sim \alpha(\alpha-1)x^{\alpha-2}$. Sub into our differential equation:
+
+$$x^{2\alpha}\alpha(\alpha-1)x^{\alpha-2} = x $$
+$$x^{2\alpha-2}\alpha(\alpha-1) = 1 $$
+
+For the LHS to stay bounded as $x \rightarrow \infty$ we need $2\alpha - 2 = 0 \implies \alpha = 1$. But then:
+
+$LHS = \alpha(\alpha-1) = 1(1-1) = 0$ and $RHS = 1$. This is a contradiction, so there's more going on than $y(x) \sim x^{\alpha}, x \rightarrow \infty$.
+
+2) Check for ""logarithmic"" asymptotic behaviour. Try $y(x) \sim x^{\alpha}(\ln{x})^{\beta}, x \rightarrow \infty$
+
+$y'(x) = x^{\alpha-1}(\alpha (\ln{x})^{\beta} + \beta (\ln{x})^{\beta -1}), y''(x) = (\alpha -1)x^{\alpha-2} (\alpha (\ln{x})^{\beta} + \beta (\ln{x})^{\beta -1}) + \beta x^{\alpha-2}(\alpha( \ln{x})^{\beta-1} + (\beta-1)(\ln{x})^{\beta -2})$
+
+Substituting into our differential equation ($x \rightarrow \infty$):
+
+$$ x \sim y^2y''  \sim x^{2\alpha}(\ln{x})^{2\beta}[(\alpha -1)x^{\alpha-2} (\alpha (\ln{x})^{\beta} + \beta (\ln{x})^{\beta -1}) + \beta x^{\alpha-2}(\alpha( \ln{x})^{\beta-1} + (\beta-1)(\ln{x})^{\beta -2})] $$
+
+$$1 \sim x^{2\alpha-2} (\ln{x})^{2\beta}[...],$$
+
+We have $\alpha =1$ again:
+
+$$ 1 \sim \beta(\ln{x})^{2\beta}[(\ln{x})^{\beta-1} + (\beta -1)(\ln{x})^{\beta-2}] , x \rightarrow \infty$$
+
+For large $x$, neglect the $(\ln{x})^{\beta-2}$ term? Try it!
+
+$$1 \sim \beta(\ln{x})^{3\beta -1}, x \rightarrow \infty$$
+
+Require: $\beta = \frac{1}{3}$
+
+So our general asymptotic behaviour as $x \rightarrow \infty$ is:
+
+$$y(x) \sim x (\ln{x})^{\frac{1}{3}}$$ or
+
+$$y(x) = Ax (\ln{x})^{\frac{1}{3}} +B$$
+
+with A and B determined from initial conditions. This leads to the final solution, $\boxed{y(x) = 3^{\frac{1}{3}}x (\ln x)^{\frac{1}{3}}}$."
+Raglan Ward,"Consider the following equation: $y(x) = \int_0^1\left(\frac{e^{-t}}{1+x^2t^3}\right)dt$. In the limit $x\rightarrow 0^+$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","First, for small x we see that the $x^2t^3$ term will be negligent and so our leading approximation is $I(x) \approx \int_0^1 e^{-t} \, dt = [-e^{-t}]_0^1 = -e^{-1} - (-e^0) = 1 - e^{-1}$ so $I(x) \sim 1 - e^{-1} \quad \text{as } x \to 0^+$. 
+
+We can extend our analysis by providing the next order term with a series expansion for $\frac{1}{1+x^2t^3} $ for small x $$\frac{1}{1 + x^2 t^3} = 1 - x^2 t^3 + x^4 t^6 - x^6 t^9 + \dots$$ Using this expansion our integrand becomes $$\frac{e^{-t}}{1 + x^2 t^3} = e^{-t} (1 - x^2 t^3 + x^4 t^6 - \dots)$$ and integrating we get $$I(x) = \int_0^1 e^{-t} dt - x^2 \int_0^1 t^3 e^{-t} dt + x^4 \int_0^1 t^6 e^{-t} dt - \dots$$
+
+Simplifying we get $$\int_0^1 t^3 e^{-t} dt = -e^{-1}+3\int_0^1 t^2e^{-t} dt= -e^{-1}-3e^{-1}+6\int_0^1te^{-t}dt=-4e^{-1}-6e^{-1}+6\int_0^1e^{-t}dt=-10e^{-1}+6(1-e^{-1})=6-16e^{-1}$$
+
+Therefore our final answer adding this correction to our first order approximation is $$\boxed{I(x) = 1 - e^{-1} - \left(6 - \frac{16}{e}\right)x^2}$$"
+David Brown,"Consider the following equation: $y y''' - x^2 y'' = x^5$. In the limit $x\rightarrow +\infty$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","We will use dominant balance to find the asymptotic behavior of the solution as $x \to \infty$. We assume for large $x$, the solution can be approximated by a power law of the form $y(x) = A x^p$. We substitute this ansatz into the differential equation. By balancing the dominant terms, we can determine the values of $A$ and $p$.
+
+
+    Let $y(x) = A x^p$ be the solution as $x \to \infty$.
+
+    $$y'(x) = A p x^{p-1}$$
+    $$y''(x) = A p (p-1) x^{p-2}$$
+    $$y'''(x) = A p (p-1) (p-2) x^{p-3}$$
+
+    Substitute $y, y'', y'''$ into the differential equation:
+    $$(A x^p) \left(A p (p-1) (p-2) x^{p-3}\right) - x^2 \left(A p (p-1) x^{p-2}\right) = x^5$$
+
+    Simplify:
+    Term 1: $y y''' = A^2 p (p-1) (p-2) x^{p + (p-3)} = A^2 p (p-1) (p-2) x^{2p-3}$
+    Term 2: $-x^2 y'' = -x^2 \left(A p (p-1) x^{p-2}\right) = -A p (p-1) x^{2 + (p-2)} = -A p (p-1) x^{p}$
+    Term 3: $x^5$
+
+    So the equation becomes:
+    $$A^2 p (p-1) (p-2) x^{2p-3} - A p (p-1) x^{p} = x^5$$
+
+  
+
+    Balancing Term 1 and Term 3 for large x:
+    $$A^2 p (p-1) (p-2) x^{2p-3} \approx x^5$$
+
+    For the powers of $x$ to balance, we must have:
+    $$2p - 3 = 5$$
+    $$2p = 8$$
+    $$p = 4$$
+
+    Now equate the coefficients of $x^5$:
+    $$A^2 p (p-1) (p-2) = 1$$
+    Substitute $p = 4$:
+    $$A^2 (4) (4-1) (4-2) = 1$$
+    $$A^2 (4) (3) (2) = 1$$
+    $$A^2 (24) = 1$$
+    $$A^2 = \frac{1}{24}$$
+    $$A = \pm \sqrt{\frac{1}{24}} = \pm \frac{1}{\sqrt{24}}$$
+
+    $p = 4$ and $A = \pm \frac{1}{\sqrt{24}}$. Thus, the asymptotic solution is:
+    
+    We can choose the positive root for verification.
+
+## Final Answer
+
+The asymptotic behavior of the solution to the nonlinear differential equation $y y''' - x^2 y'' = x^5$ as $x \to \infty$ is:
+
+$$\boxed{y(x) \approx \frac{1}{\sqrt{24}} x^4; y(x) = -\frac{1}{\sqrt{24}} x^4}$$"
+David Brown,"Consider the following equation: $y(x) = \int_x^1 \sin(xt)\,dt$. In the limit $x\rightarrow 0^+$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","First, we find the indefinite integral. We use the substitution $u = xt$, so $du = x \, dt$, and $dt = \frac{1}{x} \, du$.
+
+$$
+\int \sin(xt) \, dt = \int \sin(u) \frac{1}{x} \, du = \frac{1}{x} \int \sin(u) \, du = \frac{1}{x} (-\cos(u)) + C = -\frac{1}{x} \cos(xt) + C
+$$
+
+Now, evaluate from $x$ to $1$:
+
+$$
+\begin{aligned}
+I(x) &= \left[ -\frac{1}{x} \cos(xt) \right]_x^1 \\
+&= \left( -\frac{1}{x} \cos(x \cdot 1) \right) - \left( -\frac{1}{x} \cos(x \cdot x) \right) \\
+&= -\frac{1}{x} \cos(x) + \frac{1}{x} \cos(x^2) \\
+&= \frac{1}{x} (\cos(x^2) - \cos(x))
+\end{aligned}
+$$
+
+Thus, the solution is:
+
+$$
+I(x) = \frac{1}{x} (\cos(x^2) - \cos(x))
+$$
+
+## Leading Behavior as x → 0+
+
+To find the leading behavior as $x \to 0^+$, we use Taylor series expansions for $\cos(x^2)$ and $\cos(x)$ around $x=0$.
+
+**1. Taylor Expansion of $\cos(x^2)$:**
+Substituting $u = x^2$:
+$$
+\cos(x^2) = 1 - \frac{(x^2)^2}{2!} + O(x^8) = 1 - \frac{x^4}{2} + O(x^8)
+$$
+
+**2. Taylor Expansion of $\cos(x)$:**
+$$
+\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + O(x^6) = 1 - \frac{x^2}{2} + \frac{x^4}{24} + O(x^6)
+$$
+
+**3. Substitute into the Solution:**
+$$
+\begin{aligned}
+I(x) &= \frac{1}{x} (\cos(x^2) - \cos(x)) \\
+&= \frac{1}{x} \left[ \left( 1 - \frac{x^4}{2} + O(x^8) \right) - \left( 1 - \frac{x^2}{2} + \frac{x^4}{24} + O(x^6) \right) \right] \\
+&= \frac{1}{x} \left[ \frac{x^2}{2} - \frac{x^4}{2} - \frac{x^4}{24} + O(x^6) \right] \\
+&= \frac{1}{x} \left[ \frac{x^2}{2} + O(x^4) \right] \\
+&= \frac{x}{2} + O(x^3)
+\end{aligned}
+$$
+
+As $x \to 0^+$, the leading term is $\frac{x}{2}$.
+
+## Final Answer:
+
+The leading behavior of the integral $\int_x^1 \sin(xt) \, dt$ as $x \to 0^+$ is:
+
+$$
+\boxed{\frac{x}{2}}
+$$"
+Siyan Zhou,"Consider the following equation: $y'''y' = x^4 y y''$. In the limit $x\rightarrow +\infty$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","$\boxed{y=x;y=e^{x^3/3};y=e^{-x^3/3}}$"
+Luke Zhu,"Consider the following equation: $y(x)=\int_0^{14}\frac{dt}{(x +\ln(2t^3+3t^2+4))^{9/2}}. In the limit $x\rightarrow 0^+$, find an analytic approximation of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;. Your answer should not involve integrals.","To begin, we find the maximum height. The integrand looks like...
+and thus is maximised when $x=0$, which gives the height value
+$$\text{height} = \frac{1}{(\varepsilon+\ln 4)^{9/2}} $$
+and to find the width we can find the value $x=w$ where the integrand decreases by a factor of $2$. We must solve
+$$\frac{1}{(\varepsilon +\ln(2w^3+3w^2+4))^{9/2}} =\frac{1}{2(\varepsilon+\ln 4)^{9/2}}$$
+
+$$ (\varepsilon +\ln(2w^3+3w^2+4))^{9/2} =2(\varepsilon+\ln 4)^{9/2} $$
+
+$$\varepsilon +\ln(2w^3+3w^2+4) = 2^{2/9}(\varepsilon+\ln 4) $$
+
+where we can simplify the LHS natural log by using the Taylor series $\ln(1+z) \approx z-z^2/2+\cdots$ for $z\ll 1$ under the rearrangement
+
+$$\ln(2w^3+3w^2+4) = \ln(4) + \ln\left(1+\frac{2w^3+3w^2}{4}\right)\approx \ln(4) + \frac{3w^2}{4} $$
+
+since this corresponds to the limit $w$ small, so we can throw out the $w^3/2$ term. This gives us the equation $$\varepsilon + \ln4 + \frac{3w^2}{4} = 2^{2/9} (\varepsilon + \ln 4) $$$$\implies\frac{3}{4}w^2= (2^{2/9}-1)(\varepsilon + \ln4)  $$$$\implies w = \left(\frac{4}{3}(2^{2/9}-1)(\varepsilon + \ln4) \right)^{1/2} $$and thus in the regime where $w\ll 14$ so that the width is small compared to the bounds of integration, we find that $$I(\varepsilon) = \text{height}\times \text{width} = \frac{1}{(\varepsilon+\ln 4)^{9/2}} \times \left(\frac{4}{3}(2^{2/9}-1)(\varepsilon + \ln4) \right)^{1/2} $$$$=\left(\frac{4}{3}(2^{2/9}-1)\right)^{1/2} (\varepsilon + \ln 4)^{-4} $$whereas if the width exceeds the integration limit of 14, then we must have $$I(\varepsilon) = \frac{14}{(\varepsilon + \ln 4)^{9/2}} $$. Plotting this, we see the following:
+
+$\boxed{y(x) =  \left(\frac{4}{3}(2^{2/9}-1)\right)^{1/2}/(x+ \ln 4)^{-4}}$"
+,"Consider the following equation: $y(x)=\int_0^{14}\frac{dt}{(x +\ln(2t^3+3t^2+4))^{9/2}}. In the limit $x\rightarrow \infty$, find an analytic approximation of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;. Your answer should not involve integrals.",$\boxed{y(x) = \frac{14}{(x)^{9/2}}}$
+Arjun Nageswaran,"Consider the following equation: $y^3 y'' = x^2 + 1$. In the limit $x\rightarrow +\infty$, find all approximate behaviors of $y$ up to leading non-zero order in x. Provide your answer in a $\boxed{}$ latex environment and separate all potential solutions with a ;.","For large $x$, the problem is effectively
+$$y^3y'' = x^2$$.
+
+Note that a power-law form for $y = Ax^p$ will not suffice for this case since the implied $p = 1$, but then $y''$ would vanish. In this case, as in the original Bender and Orszag problem, we instead will assume that $y$ takes on the form of $y(x) = Ax(\ln x)^p$.
+
+In this case $y'(x) = A(\ln x)^p + Ap(\ln x)^{p-1}$. Then $y''(x) = p \frac{A}{x} (\ln x)^{p-1} + \frac{Ap(p-1)}{x} (\ln x)^{p-2}$. For large $x$, this becomes approximately $\frac{Ap}{x} (\ln x)^{p-1}$. Set $y^3 = A^3x^3(\ln x)^{3p}$.
+
+Then multiplying those terms together yields that
+
+$$A^4x^2p (\ln x)^{4p-1} = x^2$$
+
+Then $A^4p(\ln x)^{4p-1} = 1$
+
+This implies that $4p - 1 = 0$, so $p = \frac{1}{4}$. Then $A^4 \frac{1}{4} = 1$, so $A = \sqrt{2}$.
+
+Thus, our approximate solution for large $x$ is
+
+$$\boxed{y(x) = \sqrt{2}x(\ln x)^{\frac{1}{4}}; y(x) = -\sqrt{2}x(\ln x)^{\frac{1}{4}}}$$"
